@@ -15,10 +15,10 @@ public class CartService {
     }
     public int getUsersCart(String username){return cartDAO.getUsersCart(username);}
     public List<Cart> showItems(int cartId) { return cartDAO.showItems(cartId); }
-    public Cart removeItem(Cart cart) { return cartDAO.removeItem(cart);
-    }
-    public Cart listUsersByProduct(String username) { return cartDAO.deleteCustomer(username); }
-    public Cart buyItem(int cartId) {return cartDAO.buyItem(cartId); }
+    public String removeItem(int cartId, int productId){return cartDAO.removeItem(cartId,productId);}
+
+    public List<Cart> listUsersByProduct(int productId) { return cartDAO.usersByProduct(productId); }
+    public String buyItem(int cartId) {return cartDAO.buyItem(cartId); }
 
 
 

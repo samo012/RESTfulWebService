@@ -12,6 +12,11 @@ public class Cart {
         this.user = username;
         this.active = active;
     }
+    public Cart (int productId, String username){
+        this.productId = productId;
+        this.user = username;
+    }
+
 
     public int getCartId() {
         return id;

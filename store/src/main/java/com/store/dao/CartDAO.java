@@ -46,8 +46,9 @@ public class CartDAO {
     public List<Cart> showItems(int cartId){
 
         List<Cart> items = new ArrayList<Cart>();
-
-        this.jdbcTemplate.query("SELECT productId FROM carts WHERE cartId = ?", new Object[] {cartId},
+        String sql = "SELECT carts.cartId, products.itemId, products.name, products.msrp, products.salePrice " +
+                "FROM carts INNER JOIN products ON carts.cartId=products.itemId WHERE cartId = ?";
+        this.jdbcTemplate.query(sql, new Object[] {cartId},
                 (rs, rowNum) -> new Cart(rs.getInt("cartId"), rs.getInt("productId"), rs.getString("username"), rs.getBoolean("active"))
         ).forEach(item -> items.add(item));
 
@@ -64,21 +65,33 @@ public class CartDAO {
     }
 
 
-    public Cart removeItem(Cart cart){
+    public String removeItem(int cartId, int productId){
         this.jdbcTemplate.update("DELETE FROM carts WHERE cartId = ? AND productId=?", new Object [] {
-                cart.getCartId(),cart.getProductId()});
-        return cart;
+                cartId,productId});
+        String str = "Item successfully removed from cart";
+        return str;
     }
 
-    public String deleteCustomer(String username){
+    public String buyItem(int cartId){
 
-        String str = "Error deleting customer";
-
-        int rows = this.jdbcTemplate.update("DELETE FROM customers WHERE username = ?", new Object [] {username});
-        if (rows > 0){
-            str = "Customer Successfully Deleted";
-        }
+        this.jdbcTemplate.update( "UPDATE carts SET active = ? WHERE cartId = ?",
+                new Object[] {false, cartId});
+        String str = "Item successfully purchased";
         return str;
+
+    }
+    public List<Cart> usersByProduct(int productId){
+
+        String sql = "SELECT username FROM carts WHERE productId = ? AND active = ?";
+
+        List<Cart> items = new ArrayList<Cart>();
+
+        this.jdbcTemplate.query(sql, new Object[] {productId, false},
+                (rs, rowNum) -> new Cart(rs.getInt("productId"), rs.getString("username"))
+        ).forEach(item -> items.add(item));
+
+        return items;
+
     }
     public DriverManagerDataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
