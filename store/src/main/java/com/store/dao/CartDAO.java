@@ -1,5 +1,6 @@
 package com.store.dao;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -8,6 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.store.model.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 
 
@@ -29,70 +31,82 @@ public class CartDAO {
         this.jdbcTemplate = jdbcTemp;
     }
 
+    public int getUsersCart(String username)
+    {
+        try {
+
+            String sql = "SELECT * FROM carts WHERE username = ? AND active = ?";
+
+            Cart cart = (Cart) this.jdbcTemplate.queryForObject(
+                    sql, new Object[]{username, 1}, new CartRowMapper());
+
+            return cart.getId();
+
+        }
+        catch(EmptyResultDataAccessException e)
+        {
+            return -1;
+        }
+
+    }
+
+    public void addCartItem(CartItems items){
+
+        this.jdbcTemplate.update("INSERT into cartItems (cartid, productid) values (?, ?)", new Object[] {
+                items.getCartid(), items.getProductid()});
+
+    }
+
     public Cart createCart(Cart cart){
 
-        this.jdbcTemplate.update("INSERT into carts (cartId, productId, username, active) values (?, ?, ?, ?)", new Object[] {
-                cart.getCartId(), cart.getProductId(), cart.getUser(), cart.isActive()});
-
-        return cart;
-    }
-
-    public int getUsersCart(String username){
-
-        String sql = "SELECT cartId FROM carts WHERE username = ?";
-        return this.jdbcTemplate.queryForObject(sql, new Object[] { username }, int.class);
-    }
-
-    public List<Cart> showItems(int cartId){
-
-        List<Cart> items = new ArrayList<Cart>();
-        String sql = "SELECT carts.cartId, products.itemId, products.name, products.msrp, products.salePrice " +
-                "FROM carts INNER JOIN products ON carts.cartId=products.itemId WHERE cartId = ?";
-        this.jdbcTemplate.query(sql, new Object[] {cartId},
-                (rs, rowNum) -> new Cart(rs.getInt("cartId"), rs.getInt("productId"), rs.getString("username"), rs.getBoolean("active"))
-        ).forEach(item -> items.add(item));
-
-        return items;
-    }
-
-    public Cart addItemtoCart(Cart cart){
-
-        String sql = "INSERT into carts (cartId, productId, username, active) VALUES (?,?,?,?)";
-
-        this.jdbcTemplate.update(sql, new Object[] { cart.getCartId(), cart.getProductId(), cart.getUser(), true });
+        this.jdbcTemplate.update("INSERT into carts (username, active) values (?, ?)", new Object[] {
+                cart.getUsername(), cart.isActive()});
 
         return cart;
     }
 
 
-    public String removeItem(int cartId, int productId){
-        this.jdbcTemplate.update("DELETE FROM carts WHERE cartId = ? AND productId=?", new Object [] {
-                cartId,productId});
-        String str = "Item successfully removed from cart";
-        return str;
-    }
+    public List<CartItems> getItems(int cartId){
 
-    public String buyItem(int cartId){
+        List<CartItems> output = new ArrayList<>();
 
-        this.jdbcTemplate.update( "UPDATE carts SET active = ? WHERE cartId = ?",
-                new Object[] {false, cartId});
-        String str = "Item successfully purchased";
-        return str;
+        this.jdbcTemplate.query("SELECT * FROM cartItems where cartId = " + cartId , new Object[] { },
+                (rs, rowNum) -> new CartItems(rs.getInt("id"), rs.getInt("cartId"), 
+                        rs.getInt("productId"))).forEach(item -> output.add(item));
+
+        return output;
 
     }
-    public List<Cart> usersByProduct(int productId){
 
-        String sql = "SELECT username FROM carts WHERE productId = ? AND active = ?";
-
-        List<Cart> items = new ArrayList<Cart>();
-
-        this.jdbcTemplate.query(sql, new Object[] {productId, false},
-                (rs, rowNum) -> new Cart(rs.getInt("productId"), rs.getString("username"))
-        ).forEach(item -> items.add(item));
-
-        return items;
+    public int checkout(int cartId)
+    {
+        this.jdbcTemplate.update( "UPDATE carts SET active = ? WHERE id = ?",
+                new Object[] {0, cartId});
+        return cartId;
 
     }
+
+    public int removeItem(int cartid, int productid)
+    {
+        int rows = this.jdbcTemplate.update("DELETE FROM cartItems WHERE cartid = ? AND productid = ?", new Object [] {cartid, productid});
+
+        return productid;
+    }
+
+    public List<String> getUsersByProductId(int pid)
+    {
+        String sql = "SELECT cartItems.productid FROM cartItems LEFT JOIN carts ON cartItems.cartid=carts.id WHERE carts.active = 0";
+        List<String> output = new ArrayList<>();
+
+        this.jdbcTemplate.query(sql, new Object[] { },
+                (rs, rowNum) -> rs.getString("username")).forEach(c -> output.add(c));
+
+        return output;
+
+
+    }
+
+
     public DriverManagerDataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverClassName);

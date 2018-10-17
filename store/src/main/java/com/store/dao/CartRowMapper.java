@@ -9,12 +9,11 @@ public class CartRowMapper implements RowMapper {
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         Cart cart = new Cart();
 
-        cart.setCartId(rs.getInt("cartId"));
-        cart.setProductId(rs.getInt("productId"));
+        cart.setId(rs.getInt("id"));
 
-        cart.setUser(rs.getString("username"));
+        cart.setUsername(rs.getString("username"));
 
-        cart.setActive(rs.getBoolean("active"));
+        cart.setActive(rs.getInt("active"));
 
 
 
