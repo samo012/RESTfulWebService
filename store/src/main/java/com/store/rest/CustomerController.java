@@ -52,8 +52,13 @@ public class CustomerController extends HttpServlet  {
 		if(fname == null || lname == null || username == null || email == null)
 			return Response.status(404).entity("Error").build();
 
-		if(customerService.getCustomer(username) != null)
-			return Response.status(409).entity("Username already exists").build();
+		if (fname == null || lname == null || username == null || email == null)
+			return Response.status(400).entity("Bad Request").build();
+		else if(customerService.customerExists(username))
+		{
+			return Response.status(409).entity("Customer with username already exists").build();
+		}
+
 
 		Customer customer = new Customer(fname,lname,username,email);
 		return Response.status(200).entity(customerService.createCustomer(customer)).build();

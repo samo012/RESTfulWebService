@@ -6,48 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e878a29c-0342-4987-9a50-c9cc463a4aaa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/store/src/main/java/com/store/model/CartItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/466f9cc2-e4de-4777-8f87-3a79873ffe5e.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/466f9cc2-e4de-4777-8f87-3a79873ffe5e/storage_v2/_src_/schema/db_store.4JG_fA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/466f9cc2-e4de-4777-8f87-3a79873ffe5e/storage_v2/_src_/schema/db_store.4JG_fA.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/466f9cc2-e4de-4777-8f87-3a79873ffe5e/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/466f9cc2-e4de-4777-8f87-3a79873ffe5e/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/src/main/java/com/store/dao/CartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/store/src/main/java/com/store/dao/CartDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/src/main/java/com/store/dao/CartRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/store/src/main/java/com/store/dao/CartRowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/src/main/java/com/store/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/store/src/main/java/com/store/model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/src/main/java/com/store/rest/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/store/src/main/java/com/store/rest/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/src/main/java/com/store/rest/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/store/src/main/java/com/store/rest/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/app/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/app/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/dao/CustomerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/dao/CustomerDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/dao/CustomerRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/dao/CustomerRowMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/dao/ProductDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/dao/ProductDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/dao/ProductRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/dao/ProductRowMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/rest/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/rest/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/rest/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/rest/CustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/rest/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/rest/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/classes/com/store/rest/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/classes/com/store/rest/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/app/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/app/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/CustomerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/CustomerDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/CustomerRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/CustomerRowMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/ProductDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/ProductDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/ProductRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/dao/ProductRowMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/CustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/store/target/store-2.0.3.RELEASE/WEB-INF/classes/com/store/rest/ProductService.class" afterDir="false" />
-    </list>
+    <list default="true" id="e878a29c-0342-4987-9a50-c9cc463a4aaa" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/store/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +71,7 @@
     <session id="-748183002">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.opened" value="2" />
@@ -406,7 +365,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539744587887" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539744599392" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Edit As Language" value="MySQL" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -524,12 +483,12 @@
       <option name="presentableId" value="Default" />
       <updated>1539718423771</updated>
       <workItem from="1539718427266" duration="23310000" />
-      <workItem from="1539744107702" duration="381000" />
+      <workItem from="1539744107702" duration="416000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23691000" />
+    <option name="totallyTimeSpent" value="23726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -545,7 +504,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32876712" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

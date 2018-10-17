@@ -3,7 +3,6 @@ package com.store.rest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.*;
 
-import javafx.util.Pair;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,24 +44,21 @@ public class CartController extends HttpServlet  {
 
 
     @POST
-    public Response addItemToCart(@QueryParam("productId") int pid,
+    public Response addItemToCart(@QueryParam("productId") int productId,
                                   @QueryParam("username") String username)
     {
-        if (pid == 0 || username == null)
+        if (username == null || productId ==0)
             return Response.status(400).entity("Bad Request").build();
 
-        int cartActive = cartService.getUsersCart(username);
+        int cartActive = cartService.getUsersCart(username); //get users cart id
 
-        // 1 . Check for active cart belonging to this user, if none, create a cart
-        if(cartActive == -1)
+        if(cartActive == -1)  //Check for active cart
         {
-            cartService.createCart(new Cart(username, 1));
-            // get new cart's cartid (?)
-            cartActive = cartService.getUsersCart(username);
+            cartService.createCart(new Cart(username, 1)); //create one if it doesn't exist
+            cartActive = cartService.getUsersCart(username); //set new cart id
         }
 
-        // add product id to cart contents table
-        CartItems item = new CartItems(cartActive, pid);
+        CartItems item = new CartItems(cartActive, productId); //add item to cart items
         cartService.addItemToCart(item);
         String output = cartService.getMsg("Item successfully added");
         return Response.status(200).entity(output).build();
@@ -74,24 +70,22 @@ public class CartController extends HttpServlet  {
     public Response getItemsFromCartId(@QueryParam("username") String username,
                                        @QueryParam("productId") int productid)
     {
-        // if no username, return users who've bought some product
-        if(username == null)
+
+        if(username == null) //if no username specified, show users who bough a product
         {
-            //return Response.status(200).entity(cartService.listUsersByProduct(productid)).build();
+            return Response.status(200).entity(cartService.listUsersByProduct(productid)).build();
         }
 
         int activeCart = cartService.getUsersCart(username);
 
-        if(activeCart == -1)
+        if(activeCart == -1) //Check for active cart
         {
             return Response.status(400).entity("Bad Request").build();
         }
 
 
 
-        List<CartItems> items = new ArrayList<>();
-
-        items = cartService.getItems(activeCart);
+        List<CartItems> items = cartService.getItems(activeCart);
 
         Collection<Product> products = new ArrayList<>();
 
@@ -99,8 +93,9 @@ public class CartController extends HttpServlet  {
         {
             products.add(productService.getProductByID(items.get(i).getProductid()));
         }
-          Object [] p = new Object[]{products, activeCart};
-        return Response.status(200).entity(products).build();
+
+        Object [] p = new Object[]{"CartId: "+ activeCart, products};
+        return Response.status(200).entity(p).build();
     }
 
     @DELETE

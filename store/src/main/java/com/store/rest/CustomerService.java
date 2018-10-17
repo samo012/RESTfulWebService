@@ -1,6 +1,7 @@
 package com.store.rest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -31,6 +32,17 @@ public class CustomerService {
 	public List<Customer> getAllCustomers() {
 		List<Customer> customers = customerDAO.getAllCustomers();
 		return customers;
+	}
+	public boolean customerExists(String user) {
+
+		try {
+			customerDAO.getCustomer(user);
+		}
+		catch (EmptyResultDataAccessException e)
+		{
+			return false;
+		}
+		return true;
 	}
 
 

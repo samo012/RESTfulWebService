@@ -59,15 +59,6 @@ public class ProductDAO {
     }
 
 
-    public boolean deleteProductById(int id){
-        boolean success = false;
-
-        int rows = this.jdbcTemplate.update("DELETE FROM products WHERE id = ?", new Object [] {id});
-        if (rows > 0){
-            success = true;
-        }        
-        return success;
-    }
 
     public DriverManagerDataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

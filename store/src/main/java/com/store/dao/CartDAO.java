@@ -31,6 +31,22 @@ public class CartDAO {
         this.jdbcTemplate = jdbcTemp;
     }
 
+    public Cart createCart(Cart cart){
+
+        this.jdbcTemplate.update("INSERT into carts (username, active) values (?, ?)", new Object[] {
+                cart.getUsername(), cart.isActive()});
+
+        return cart;
+    }
+
+    public void addCartItem(CartItems items){
+
+        this.jdbcTemplate.update("INSERT into cartItems (cartid, productid) values (?, ?)", new Object[] {
+                items.getCartid(), items.getProductid()});
+
+    }
+
+
     public int getUsersCart(String username)
     {
         try {
@@ -49,22 +65,6 @@ public class CartDAO {
         }
 
     }
-
-    public void addCartItem(CartItems items){
-
-        this.jdbcTemplate.update("INSERT into cartItems (cartid, productid) values (?, ?)", new Object[] {
-                items.getCartid(), items.getProductid()});
-
-    }
-
-    public Cart createCart(Cart cart){
-
-        this.jdbcTemplate.update("INSERT into carts (username, active) values (?, ?)", new Object[] {
-                cart.getUsername(), cart.isActive()});
-
-        return cart;
-    }
-
 
     public List<CartItems> getItems(int cartId){
 
@@ -88,14 +88,13 @@ public class CartDAO {
 
     public int removeItem(int cartid, int productid)
     {
-        int rows = this.jdbcTemplate.update("DELETE FROM cartItems WHERE cartid = ? AND productid = ?", new Object [] {cartid, productid});
-
+        this.jdbcTemplate.update("DELETE FROM cartItems WHERE cartid = ? AND productid = ?", new Object [] {cartid, productid});
         return productid;
     }
 
     public List<String> getUsersByProductId(int pid)
     {
-        String sql = "SELECT cartItems.productid FROM cartItems LEFT JOIN carts ON cartItems.cartid=carts.id WHERE carts.active = 0";
+        String sql = "SELECT carts.username, cartItems.productid FROM cartItems LEFT JOIN carts ON cartItems.cartid=carts.id WHERE carts.active = 0 LIMIT 1";
         List<String> output = new ArrayList<>();
 
         this.jdbcTemplate.query(sql, new Object[] { },

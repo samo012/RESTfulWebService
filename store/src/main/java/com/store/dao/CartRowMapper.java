@@ -6,6 +6,7 @@ import com.store.model.*;
 
 
 public class CartRowMapper implements RowMapper {
+
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         Cart cart = new Cart();
 
@@ -14,8 +15,6 @@ public class CartRowMapper implements RowMapper {
         cart.setUsername(rs.getString("username"));
 
         cart.setActive(rs.getInt("active"));
-
-
 
         return cart;
     }
