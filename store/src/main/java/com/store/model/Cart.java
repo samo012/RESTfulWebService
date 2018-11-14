@@ -1,49 +1,49 @@
 package com.store.model;
 
-import java.util.ArrayList;
-
+import java.util.Collection;
 
 public class Cart {
-
-    private int id;
+    private int cartId;
+    private Collection<CartProduct> items;
     private String username;
-    private int active;
-
-    public Cart(String username, int active) {
-        this.username = username;
-        this.active = active;
-    }
-
-    public Cart(int id, String username, int active) {
-        this.id = id;
-        this.username = username;
-        this.active = active;
-    }
 
     public Cart() {
     }
 
-    public int getId() {
-        return id;
+    public Cart(String username) {
+        this.username = username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Cart(int cartId, String username) {
+        this.cartId = cartId;
+        this.username = username;
+    }
+
+    public int getCartId() {
+        return this.cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
+    public Collection<CartProduct> getItems() {
+        return this.items;
+    }
+
+    public void setItems(Collection<CartProduct> items) {
+        this.items = items;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public int isActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
+    public String toString() {
+        return "Cart{cartId=" + this.cartId + ", items=" + this.items + ", username='" + this.username + '\'' + '}';
     }
 }

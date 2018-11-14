@@ -1,32 +1,43 @@
 package com.store.rest;
 
 import com.store.dao.CartDAO;
-import com.store.model.*;
+import com.store.model.CartProduct;
+import com.store.model.Order;
+import java.util.Collection;
+import java.util.Map;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CartService {
     private CartDAO cartDAO = new CartDAO();
 
-    public CartItems addItemToCart(CartItems item) {
-        cartDAO.addCartItem(item);
-        return item;
-    }
-    public int getUsersCart(String username){
-        return cartDAO.getUsersCart(username);
-    }
-    public Cart  createCart(Cart cart){ return cartDAO.createCart(cart);}
-    public List<CartItems> getItems(int cartId) { return cartDAO.getItems(cartId); }
-    public int removeItem(int cartId, int itemId){return cartDAO.removeItem(cartId,itemId);}
-
-    public List<String> listUsersByProduct(int itemId) { return cartDAO.getUsersByProductId(itemId); }
-    public int buyItem(int cartId) {return cartDAO.checkout(cartId); }
-
-    public String getMsg( String msg) {
-        return msg;
+    public CartService() {
     }
 
+    public void addToCart(String username, int productId) {
+        this.cartDAO.addToCart(username, productId);
+    }
 
+    public Collection<CartProduct> showCart(String username) {
+        Collection<CartProduct> cartProduct = this.cartDAO.showCart(username);
+        return cartProduct;
+    }
+
+    public Map showCartv2(String username) {
+        Map cartProduct = this.cartDAO.showCartv2(username);
+        return cartProduct;
+    }
+
+    public void deleteItemCart(int cartId, int productId) {
+        this.cartDAO.deleteItemCart(cartId, productId);
+    }
+
+    public void purchase(int cartId) {
+        this.cartDAO.purchase(cartId);
+    }
+
+    public Collection<Order> listUsers(int productId) {
+        Collection<Order> order = this.cartDAO.listUsers(productId);
+        return order;
+    }
 }

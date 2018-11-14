@@ -1,98 +1,54 @@
 package com.store.model;
 
 public class Product {
-
-	private int itemId;
-    private int upc;
+    private int productId;
+    private String productName;
     private double msrp;
     private double salePrice;
-    private String name;
- 	private String shortDescription;
- 	private String brandName;
-    private String size;
-    private String color;
-    private String gender;
 
+    public Product() {
+    }
 
-   public Product(int itemId, String name, double msrp, double salePrice, int upc, 
-    String shortDescription, String brandName, String size, String color, String gender) {
-        this.itemId= itemId;
-        this.name = name;
+    public Product(int productId, String productName, double msrp, double salePrice) {
+        this.productId = productId;
+        this.productName = productName;
         this.msrp = msrp;
         this.salePrice = salePrice;
-        this.upc = upc;
-        this.shortDescription = shortDescription;
-        this.brandName = brandName;
-        this.size = size;
-        this.color = color;
-        this.gender = gender;
-    }
-    public Product() {
-
     }
 
+    public int getProductId() {
+        return this.productId;
+    }
 
-    public int getItemId() {
-        return itemId;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+
+    public String getProductName() {
+        return this.productName;
     }
-    public int getUpc() {
-        return upc;
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
-    public void setUpc(int upc) {
-        this.upc = upc;
-    }
+
     public double getMsrp() {
-        return msrp;
+        return this.msrp;
     }
+
     public void setMsrp(double msrp) {
         this.msrp = msrp;
     }
+
     public double getSalePrice() {
-        return salePrice;
+        return this.salePrice;
     }
+
     public void setSalePrice(double salePrice) {
         this.salePrice = salePrice;
     }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getShortDescription() {
-        return shortDescription;
-    }
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-      public String getBrandName() {
-        return brandName;
-    }
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-      public String getSize() {
-        return size;
-    }
-    public void setSize(String size) {
-        this.size = size;
-    }
-    public String getColor() {
-        return color;
-    }
-    public void setColor(String color) {
-        this.color = color;
-    }
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
-
-
+    public String toString() {
+        return "{productId=" + this.productId + ", productName='" + this.productName + '\'' + ", msrp=" + this.msrp + ", salePrice=" + this.salePrice + '}';
+    }
 }

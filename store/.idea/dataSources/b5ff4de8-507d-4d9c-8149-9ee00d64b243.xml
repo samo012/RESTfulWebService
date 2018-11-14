@@ -1107,45 +1107,40 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="278" parent="2" name="cartItems"/>
+    <table id="278" parent="2" name="cartproducts"/>
     <table id="279" parent="2" name="carts"/>
     <table id="280" parent="2" name="customers"/>
-    <table id="281" parent="2" name="products"/>
-    <routine id="282" parent="2" name="insertProducts">
+    <table id="281" parent="2" name="orders"/>
+    <table id="282" parent="2" name="products"/>
+    <routine id="283" parent="2" name="insertProducts">
       <SourceTextLength>1078</SourceTextLength>
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <column id="283" parent="278" name="id">
+    <column id="284" parent="278" name="productId">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="278" name="cartId">
+    <column id="285" parent="278" name="productName">
       <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="278" name="productId">
+    <column id="286" parent="278" name="msrp">
       <Position>3</Position>
+      <DataType>decimal(6,2 digit)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="278" name="salePrice">
+      <Position>4</Position>
+      <DataType>decimal(8,2 digit)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="278" name="cartId">
+      <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="286" parent="278" name="cartItems_id_uindex">
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <key id="287" parent="278" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="288" parent="278" name="cartItems_id_uindex">
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>cartItems_id_uindex</UnderlyingIndexName>
-    </key>
     <column id="289" parent="279" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
@@ -1225,77 +1220,87 @@ username</ColNames>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>id</UnderlyingIndexName>
     </key>
-    <column id="304" parent="281" name="itemId">
+    <column id="304" parent="281" name="productId">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="305" parent="281" name="username">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="282" name="itemId">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="281" name="name">
+    <column id="307" parent="282" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="281" name="msrp">
+    <column id="308" parent="282" name="msrp">
       <Position>3</Position>
       <DataType>decimal(6,2 digit)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="281" name="salePrice">
+    <column id="309" parent="282" name="salePrice">
       <Position>4</Position>
       <DataType>decimal(8,2 digit)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="281" name="upc">
+    <column id="310" parent="282" name="upc">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="281" name="shortDescription">
+    <column id="311" parent="282" name="shortDescription">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="281" name="brandName">
+    <column id="312" parent="282" name="brandName">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="281" name="size">
+    <column id="313" parent="282" name="size">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="281" name="color">
+    <column id="314" parent="282" name="color">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="281" name="gender">
+    <column id="315" parent="282" name="gender">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="314" parent="281" name="itemId">
+    <index id="316" parent="282" name="itemId">
       <ColNames>itemId</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="315" parent="281" name="itemId_2">
+    <index id="317" parent="282" name="itemId_2">
       <ColNames>itemId</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="316" parent="281" name="itemId">
+    <key id="318" parent="282" name="itemId">
       <ColNames>itemId</ColNames>
       <UnderlyingIndexName>itemId</UnderlyingIndexName>
     </key>
-    <key id="317" parent="281" name="itemId_2">
+    <key id="319" parent="282" name="itemId_2">
       <ColNames>itemId</ColNames>
       <UnderlyingIndexName>itemId_2</UnderlyingIndexName>
     </key>
-    <argument id="318" parent="282" name="numProducts">
+    <argument id="320" parent="283" name="numProducts">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>

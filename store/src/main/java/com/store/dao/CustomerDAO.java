@@ -1,86 +1,62 @@
 package com.store.dao;
 
+import com.store.model.Cart;
+import com.store.model.Customer;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.store.model.*;
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 public class CustomerDAO {
-
     private JdbcTemplate jdbcTemplate;
     private static final String driverClassName = "com.mysql.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/db_store";
     private static final String dbUsername = "springuser";
     private static final String dbPassword = "ThePassword";
 
+    public CustomerDAO(JdbcTemplate jdbcTemp) {
+        this.jdbcTemplate = jdbcTemp;
+    }
 
     public CustomerDAO() {
         this.jdbcTemplate = new JdbcTemplate(this.getDataSource());
     }
 
-    //@Autowired
-    public CustomerDAO(JdbcTemplate jdbcTemp) {
-        this.jdbcTemplate = jdbcTemp;
-    }
-
-    public Customer createCustomer(Customer customer){
-
-        this.jdbcTemplate.update("INSERT into customers (fname, lname, username, email) values (?, ?, ?, ?)", new Object[] { 
-            customer.getFname(), customer.getLname(), customer.getUsername(), customer.getEmail()});
-    
+    public Customer createCustomer(Customer customer) {
+        String Query = "INSERT INTO customers(fname,lname,username,email) values (?,?,?,?)";
+        this.jdbcTemplate.update(Query, new Object[]{customer.getFname(), customer.getLname(), customer.getUsername(), customer.getEmail()});
         return customer;
     }
 
-    public Customer getCustomer(String username){
-
-        String sql = "SELECT * FROM customers WHERE username = ?";
-
-        Customer customer = (Customer)this.jdbcTemplate.queryForObject(
-                sql, new Object[] { username }, new CustomerRowMapper());
-
+    public Customer updateCustomer(Customer customer) {
+        String updateQuery = "UPDATE customers SET fname = ?, lname = ?, email = ? WHERE username = ?";
+        this.jdbcTemplate.update(updateQuery, new Object[]{customer.getFname(), customer.getLname(), customer.getEmail(), customer.getUsername()});
         return customer;
     }
 
-    public List<Customer> getAllCustomers(){
-        List<Customer> customers = new ArrayList<Customer>();
-
-        this.jdbcTemplate.query("SELECT * FROM customers", new Object[] { },
-                (rs, rowNum) -> new Customer(rs.getString("fname"), rs.getString("lname"), rs.getString("username"), rs.getString("email"))
-        ).forEach(customer -> customers.add(customer));
-
-        return customers;
+    public void deleteCustomer(Customer customer) {
+        String query2 = "SELECT * FROM carts WHERE username = ?";
+        Cart hello = (Cart)this.jdbcTemplate.queryForObject(query2, new Object[]{customer.getUsername()}, new BeanPropertyRowMapper(Cart.class));
+        int idNeeded = hello.getCartId();
+        String query1 = "DELETE FROM cartproducts WHERE cartId = ?";
+        this.jdbcTemplate.update(query1, new Object[]{idNeeded});
+        String query = "DELETE FROM carts WHERE username = ?";
+        this.jdbcTemplate.update(query, new Object[]{customer.getUsername()});
+        String deleteQuery = "DELETE FROM customers WHERE username = ?";
+        this.jdbcTemplate.update(deleteQuery, new Object[]{customer.getUsername()});
     }
 
-    public Customer updateCustomer(Customer customer){
-         this.jdbcTemplate.update( "UPDATE customers SET username = ?, email = ? WHERE fname = ? AND lname = ?",
-            new Object[] {customer.getUsername(), customer.getEmail(), customer.getFname(), customer.getLname()});
+    public Customer getCustomer(String username) {
+        String query = "SELECT * FROM customers WHERE username = ?";
+        Customer customer = (Customer)this.jdbcTemplate.queryForObject(query, new Object[]{username}, new BeanPropertyRowMapper(Customer.class));
         return customer;
     }
 
-    public String deleteCustomer(String username){
-
-        String str = "Error deleting customer";
-
-        int rows = this.jdbcTemplate.update("DELETE FROM customers WHERE username = ?", new Object [] {username});
-        if (rows > 0){
-            str = "Customer Successfully Deleted";
-        }
-        return str;
-    }
     public DriverManagerDataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(url);
-        dataSource.setUsername(dbUsername);
-        dataSource.setPassword(dbPassword);
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_store");
+        dataSource.setUsername("springuser");
+        dataSource.setPassword("ThePassword");
         return dataSource;
-
     }
-
 }

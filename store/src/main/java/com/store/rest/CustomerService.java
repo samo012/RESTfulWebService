@@ -1,50 +1,33 @@
 package com.store.rest;
 
+import com.store.dao.CustomerDAO;
+import com.store.model.Customer;
 import org.springframework.stereotype.Service;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-
-
-import com.store.dao.*;
-import com.store.model.*;
 
 @Service
 public class CustomerService {
-	
-	//@Autowired
 	private CustomerDAO customerDAO = new CustomerDAO();
 
+	public CustomerService() {
+	}
+
+	public void createCustomer(String fname, String lname, String username, String email) {
+		Customer customer = new Customer(fname, lname, username, email);
+		this.customerDAO.createCustomer(customer);
+	}
 
 	public Customer getCustomer(String username) {
-		return customerDAO.getCustomer(username);
-	}
-	public Customer createCustomer(Customer customer) {
-		return customerDAO.createCustomer(customer);
-	}
-	public Customer updateCustomer(Customer customer) {
-		return customerDAO.updateCustomer(customer);
-	}
-	public String deleteCustomer(String username) { return customerDAO.deleteCustomer(username); }
-
-
-	public List<Customer> getAllCustomers() {
-		List<Customer> customers = customerDAO.getAllCustomers();
-		return customers;
-	}
-	public boolean customerExists(String user) {
-
-		try {
-			customerDAO.getCustomer(user);
-		}
-		catch (EmptyResultDataAccessException e)
-		{
-			return false;
-		}
-		return true;
+		Customer retString = this.customerDAO.getCustomer(username);
+		return retString;
 	}
 
+	public void updateCustomer(String fname, String lname, String username, String email) {
+		Customer customer = new Customer(fname, lname, username, email);
+		this.customerDAO.updateCustomer(customer);
+	}
 
+	public void deleteCustomer(String username) {
+		Customer customer = new Customer(username);
+		this.customerDAO.deleteCustomer(customer);
+	}
 }
-

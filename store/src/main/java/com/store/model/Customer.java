@@ -1,13 +1,14 @@
 package com.store.model;
 
 public class Customer {
-
-	private int id;
     private String fname;
- 	private String lname;
- 	private String username;
- 	private String email;
+    private String lname;
+    private String username;
+    private String email;
+    private int customerId;
 
+    public Customer() {
+    }
 
     public Customer(String fname, String lname, String username, String email) {
         this.fname = fname;
@@ -16,46 +17,43 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(int id, String fname, String lname, String username, String email) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+    public Customer(String username) {
         this.username = username;
-        this.email = email;
     }
 
-    public Customer(){}
-
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getFname() {
-        return fname;
+        return this.fname;
     }
+
     public void setFname(String fname) {
         this.fname = fname;
     }
+
     public String getLname() {
-        return lname;
+        return this.lname;
     }
+
     public void setLname(String lname) {
         this.lname = lname;
     }
-      public String getUsername() {
-        return username;
+
+    public String getUsername() {
+        return this.username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
-      public String getEmail() {
-        return email;
+
+    public String getEmail() {
+        return this.email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-
+    public String toString() {
+        return "Customer{fname='" + this.fname + '\'' + ", lname='" + this.lname + '\'' + ", username='" + this.username + '\'' + ", email='" + this.email + '\'' + ", customerId=" + this.customerId + '}';
+    }
 }
