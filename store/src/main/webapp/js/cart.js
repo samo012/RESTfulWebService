@@ -1,7 +1,8 @@
 const app = document.getElementById('root');
 const list = document.getElementById('list');
-var cartId = 6;
+var cartId = 0;
 var prices = 0;
+
 function getUser(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -19,6 +20,7 @@ function getUser(cname) {
 }
 
 var username = getUser("user");
+
 
     var getCart = new XMLHttpRequest();
     getCart.open('GET', 'http://localhost:8080/store/carts?username='+username, true);
@@ -42,9 +44,6 @@ var username = getUser("user");
 
             prices+=item.salePrice;
 
-            console.log("yo "+prices);
-
-
         });
 
     } else {
@@ -64,16 +63,19 @@ var username = getUser("user");
 };
 getCart.send();
 
+function goBack() {
+    window.location.href = "index.html";
 
+}
 function checkout() {
     var purchase = new XMLHttpRequest();
     purchase.open('PUT', 'http://localhost:8080/store/carts/purchase/'+cartId, true);
+    purchase.send();
     purchase.onload = function () {
         alert("Items successfully purchased");
         window.location.href = "index.html";
 
     };
-    purchase.send();
 
 }
 

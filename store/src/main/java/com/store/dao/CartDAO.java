@@ -19,7 +19,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 public class CartDAO {
     private static final String driverClassName = "com.mysql.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/db_store";
+    private static final String url = "jdbc:mysql://localhost:3306/db_store_solution";
     private static final String dbUsername = "springuser";
     private static final String dbPassword = "ThePassword";
     private JdbcTemplate jdbcTemplate;
@@ -93,7 +93,7 @@ public class CartDAO {
     }
 
     public void purchase(int cartId) {
-        String Query = "SELECT * FROM carts WHERE id = ?";
+        String Query = "SELECT * FROM carts WHERE cartId = ?";
         Cart cart = (Cart)this.jdbcTemplate.queryForObject(Query, new Object[]{cartId}, new BeanPropertyRowMapper(Cart.class));
         String user = cart.getUsername();
         String Query2 = "SELECT * FROM cartproducts WHERE cartId = ?";
@@ -128,7 +128,7 @@ public class CartDAO {
     public DriverManagerDataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/db_store");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_store_solution");
         dataSource.setUsername("springuser");
         dataSource.setPassword("ThePassword");
         return dataSource;

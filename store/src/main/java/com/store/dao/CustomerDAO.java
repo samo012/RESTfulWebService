@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class CustomerDAO {
     private JdbcTemplate jdbcTemplate;
     private static final String driverClassName = "com.mysql.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/db_store";
+    private static final String url = "jdbc:mysql://localhost:3306/db_store_solution";
     private static final String dbUsername = "springuser";
     private static final String dbPassword = "ThePassword";
 
@@ -54,7 +54,7 @@ public class CustomerDAO {
     public DriverManagerDataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/db_store");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_store_solution");
         dataSource.setUsername("springuser");
         dataSource.setPassword("ThePassword");
         return dataSource;

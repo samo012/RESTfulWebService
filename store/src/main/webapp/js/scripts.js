@@ -1,13 +1,9 @@
 const app = document.getElementById('root');
 
-//const logo = document.createElement('img');
-//logo.src = 'logo.png';
-
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
 app.appendChild(container);
-var productId = 0;
 
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:8080/store/items', true);
@@ -82,6 +78,19 @@ function addItem(id) {
 }
 
 
+function createUser() {
+    var fn = document.getElementById('fn').value;
+    var ln = document.getElementById('ln').value;
+    var usr = document.getElementById('usr').value;
+    var email = document.getElementById('email').value;
+    setCookie(usr);
+
+    var addUsr = new XMLHttpRequest();
+    addUsr.open('POST', 'http://localhost:8080/store/customers/?fname='+fn+'&lname='+ln+'&username='+usr+'&email=' + email, true);
+    addUsr.send();
+}
+
+
 function listView() {
     var x = document.getElementsByClassName("card");
     for (var i = 0; i < x.length; i++) {
@@ -106,9 +115,8 @@ for (var i = 0; i < btns.length; i++) {
     });
 }
 
-var uname = document.getElementById('usr');
 function setCookie(user) {
-        document.cookie = user + "=" + uname.value + "; path=/";
+        document.cookie = "user" + "=" + user + "; path=/";
 }
 
 function getCookie(cname) {
@@ -133,8 +141,6 @@ function checkCookie() {
         window.location.href = "cart.html";
     } else {
         document.getElementById('login').style.display = "block";
-        setCookie("user");
-
     }
 }
 

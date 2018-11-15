@@ -37,7 +37,7 @@
 
 <div id="login" class="modal">
 
-    <form class="modal-content animate" action="/cart.html">
+    <form class="modal-content animate" action="cart.html">
         <div class="imgcontainer">
             <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
         </div>
@@ -62,13 +62,13 @@
 
         <div class="fcontainer" style="background-color:#f1f1f1">
             <button type="button" onclick="document.getElementById('login').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="submit" class="submit">Login</button>
+            <button type="submit" class="submit" onclick="createUser(); setCookie(document.getElementById('usr').value)">Login</button>
         </div>
     </form>
 </div>
 
 
-<div id="root"></div>
+<div id="root"></div>"us
 <script src="js/scripts.js"></script>
 
 </body>
