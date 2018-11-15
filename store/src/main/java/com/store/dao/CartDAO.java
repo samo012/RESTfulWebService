@@ -93,7 +93,7 @@ public class CartDAO {
     }
 
     public void purchase(int cartId) {
-        String Query = "SELECT * FROM carts WHERE cartId = ?";
+        String Query = "SELECT * FROM carts WHERE id = ?";
         Cart cart = (Cart)this.jdbcTemplate.queryForObject(Query, new Object[]{cartId}, new BeanPropertyRowMapper(Cart.class));
         String user = cart.getUsername();
         String Query2 = "SELECT * FROM cartproducts WHERE cartId = ?";
