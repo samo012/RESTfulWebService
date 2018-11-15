@@ -47,17 +47,15 @@ var username = getUser("user");
         });
 
     } else {
-        const errorMessage = document.createElement('marquee');
-        errorMessage.textContent = `Error loading products`;
-        list.appendChild(errorMessage);
+        location.reload();
     }
 
         var subtotal = document.createElement('h3');
         var total = document.createElement('h3');
 
-        subtotal.textContent = "subtotal: "+ prices;
+        subtotal.textContent = "subtotal: $"+ prices.toFixed(2);
         var tax = prices + prices*0.08;
-        total.textContent = "total: "+tax;
+        total.textContent = "total: $"+tax.toFixed(2);
         app.appendChild(subtotal);
         app.appendChild(total);
 };
